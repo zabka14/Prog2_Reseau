@@ -1,4 +1,4 @@
-package application;
+package HL;
 
 import java.io.BufferedReader;
 import java.io.IOException;
