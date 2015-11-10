@@ -7,11 +7,11 @@
 
 
 Exemple de fichier de config : 
-''''
+```
 {
     "Implementation": "1",
     "MaxThread": "50",
     "MaxIdleTime": "120",
     "Port": "5555"
 }
-''''
+```
