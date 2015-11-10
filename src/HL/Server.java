@@ -13,6 +13,7 @@ public class Server
 
   /**
    * Classe principale du serveur
+   * C'est cette classe qui sert de point d'entrée pour l'implémentation HL
    * @param args args[0] doit contenir le port (sinon utilisation par défaut du port 3333
    */
   @SuppressWarnings("resource")
@@ -38,8 +39,8 @@ public static void main(String args[])
   }
 
   /**
-   * Un handler pour afficher un message au lancement du serveur
-   * @param port
+   * Un handler pour afficher un message au lancement du serveur avec l'information du port utilisé
+   * @param port le port sur lequel le serveur écoute
    */
   static private void messageHandler(Integer port)
   {
