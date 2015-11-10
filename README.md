@@ -1,3 +1,5 @@
-# Prog2_Reseau
+# Serveur "echo" Multi Thread JAVA
 
-## MiniProjet du cours de Prog2 Java LP SIL / Vianey Benjamin - Bodet Cindy
+## Projet du cours de Prog2 Java LP SIL / Vianey Benjamin - Bodet Cindy
+
+
