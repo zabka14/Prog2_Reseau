@@ -22,7 +22,7 @@ public static void main(String args[])
     try
     {
       Integer port; 
-      if(args.length<=0) port=new Integer("3334"); 
+      if(args.length<=0) port=new Integer("3335"); 
       else port = new Integer(args[0]);
 
       
