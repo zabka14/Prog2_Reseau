@@ -4,30 +4,43 @@ package HL;
 import java.net.*;
 import java.io.*;
 
-
+/**
+ * Classe définissant les threads utilisés par le serveur (Server.java) pour chaque client
+ * Ces threads implémentent une fonction echo basique (ils renvoient une copie de tout ce qui leur est envoyé) 
+ * @author Benjamin Vianey & Cindy Bodet
+ *
+ */
 class MyThread implements Runnable
 {
-  private Thread _t; 
-  private Socket _s; 
+  private Thread myThread; 
+  private Socket mySocket; 
   private PrintStream ps; 
   private BufferedReader br;  
 
-  
+  /**
+   * Constructeur du thread
+   * On récupère le socket, on bind deux buffer dessus : un reader et un writer. 
+   * @param s Le socket reliant le client au serveur.
+   */
   MyThread(Socket s)
   {
-    _s=s;
+    mySocket=s;
     try
     {
-    	br = new BufferedReader(new InputStreamReader(_s.getInputStream(), "ASCII"));
-		ps = new PrintStream(_s.getOutputStream(), true, "ASCII");
+    	br = new BufferedReader(new InputStreamReader(mySocket.getInputStream(), "ASCII"));
+		ps = new PrintStream(mySocket.getOutputStream(), true, "ASCII");
     }
     catch (IOException e){ }
 
-    _t = new Thread(this);
-    _t.start();
+    myThread = new Thread(this);
+    myThread.start();
   }
 
-
+  /**
+   * Corps du thread
+   * Cette méthode définit le comportement du thread, en l'occurence, renvoyé tout ce qu'il ressoit
+   * Pour pouvoir fermer le thread, une commande /exit est disponible
+   */
   public void run()
   {
     try
@@ -40,7 +53,7 @@ class MyThread implements Runnable
 			if (pending.equals("/exit"))
 			{
 				ps.println("Vous allez etre deconnecte");
-				_s.close();
+				mySocket.close();
 			}
 			ps.println(pending);
     	}
@@ -50,7 +63,7 @@ class MyThread implements Runnable
     {
       try
       {
-        _s.close();
+        mySocket.close();
       }
       catch (IOException e){ }
     }
