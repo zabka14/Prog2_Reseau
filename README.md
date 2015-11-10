@@ -27,3 +27,10 @@ Le nombre de thread maximum du serveur
 En seconde, le nombre de seconde d'inactivité d'un client avant que la connexion ne soit fermé
 ###### Port :
 Le port d'écoute du server (au dela de 1024, en dessous de 65536
+
+
+
+### TO DO 
+
+* Utiliser un ThreadPoolExecutor pour gérer l'idle des thread
+* Utiliser le fichier de config pour choisir l'implémentation
