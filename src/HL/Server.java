@@ -5,7 +5,7 @@ import java.net.*;
 
 /**
  * Classe principale, l'objet Server créera les threads à la demande et permet de les gérer. 
- * @author Vianey Benjamin & Cindy Baudet
+ * @author Benjamin Vianey & Cindy Baudet
  *
  */
 public class Server
