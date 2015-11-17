@@ -14,6 +14,7 @@ class MyThread implements Runnable
 {
   private Thread myThread; 
   private Socket mySocket; 
+  private Server myServer;
   private PrintStream ps; 
   private BufferedReader br;  
 
@@ -21,16 +22,20 @@ class MyThread implements Runnable
    * Constructeur du thread
    * On récupère le socket, on bind deux buffer dessus : un reader et un writer. 
    * @param s Le socket reliant le client au serveur.
+ * @throws SocketException 
    */
-  MyThread(Socket s)
+  MyThread(Socket s, Server _myServer) throws SocketException
   {
-    mySocket=s;
+    mySocket=s;  
+    myServer=_myServer;
     try
     {
     	br = new BufferedReader(new InputStreamReader(mySocket.getInputStream(), "ASCII"));
 		ps = new PrintStream(mySocket.getOutputStream(), true, "ASCII");
     }
-    catch (IOException e){ }
+    catch (IOException e){ 
+    	System.out.println("A problem occured");;
+    }
 
     myThread = new Thread(this);
     myThread.start();
@@ -63,6 +68,7 @@ class MyThread implements Runnable
     {
       try
       {
+    	myServer.setNbrCo(myServer.getNbrCo()-1);
         mySocket.close();
       }
       catch (IOException e){ }

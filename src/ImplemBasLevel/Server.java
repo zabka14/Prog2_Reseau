@@ -10,29 +10,47 @@ import java.net.*;
  */
 public class Server
 {
+	private int nbrCo;
+	
+	private int maxCo;
+	private int port;
+	private int timeout;
+		
+	
 
-  /**
+  public Server(int maxCo, int port, int timeout) {
+		this.maxCo = maxCo;
+		this.nbrCo = 0;
+		this.port = port;
+		this.timeout = timeout;
+	}
+
+/**
    * Classe principale du serveur
    * C'est cette classe qui sert de point d'entrée pour l'implémentation HL
-   * @param args args[0] doit contenir le port (sinon utilisation par défaut du port 3333
+   * 
    */
   @SuppressWarnings("resource")
-public static void main(String args[])
+public void runServer()
   {
     try
-    {
-      Integer port; 
-      if(args.length<=0) port=new Integer("3335"); 
-      else port = new Integer(args[0]);
-
-      
-
-      ServerSocket ss = new ServerSocket(port); 
-      messageHandler(port);
+    {    
+    	
+      ServerSocket ss = new ServerSocket(this.port);
+      messageHandler(this.port);
      
       while (true)
       {
-        new MyThread(ss.accept());
+    	if(this.nbrCo < this.maxCo){
+    		try{
+    			new MyThread(ss.accept(), this);
+    			this.nbrCo++;
+    		}
+    		catch(SocketTimeoutException e)
+    		{
+    			System.out.println(e);
+    		}
+    	}
       }
     }
     catch (Exception e) { }
@@ -45,9 +63,46 @@ public static void main(String args[])
   static private void messageHandler(Integer port)
   {
     System.out.println("--------");
-    System.out.println("Implementation Serveur Echo HL");
+    System.out.println("Implementation Serveur Echo Bas Level");
     System.out.println("Port utilisé : "+port);
     System.out.println("--------");
   }
+
+	public int getMaxCo() {
+		return maxCo;
+	}
+	
+	public void setMaxCo(int maxCo) {
+		this.maxCo = maxCo;
+	}
+	
+	public int getNbrCo() {
+		return nbrCo;
+	}
+	
+	public void setNbrCo(int nbrCo) {
+		this.nbrCo = nbrCo;
+	}
+	
+	public int getPort() {
+		return port;
+	}
+	
+	public void setPort(int port) {
+		this.port = port;
+	}
+	
+	public int getTimeout() {
+		return timeout;
+	}
+	
+	public void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
+
+	
+	  
+  
+  
 
 }
