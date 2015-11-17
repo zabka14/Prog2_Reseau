@@ -4,6 +4,11 @@ import java.io.FileReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * Classe principale de l'application
+ * @author Benjamin Vianey
+ *
+ */
 public class Application {
 
     public static void main(String[] args) {
