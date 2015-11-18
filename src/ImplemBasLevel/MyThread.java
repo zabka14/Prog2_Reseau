@@ -24,7 +24,7 @@ class MyThread implements Runnable
    * Constructeur du thread
    * On récupère le socket, on bind deux buffer dessus : un reader et un writer. 
    * @param s Le socket reliant le client au serveur.
- * @throws SocketException 
+   * @throws SocketException 
    */
   MyThread(Socket s, Server _myServer) throws SocketException
   {

@@ -42,9 +42,11 @@ public class Application {
             		ImplemBasLevel.Server llServer = new ImplemBasLevel.Server(maxCo, port, maxIdle);
             		llServer.runServer();
             	}
-            	if(imp.equals("1"))
+            	if(imp.equals("2"))
             	{
             		//lancer l'implémentation haut level
+            		ImplemHautLevel.Server hlServer = new ImplemHautLevel.Server(maxCo, port, maxIdle);
+            		hlServer.runServer();
             	}
             }
             else

@@ -10,37 +10,53 @@ public class Server{
 	private Socket client;
 	private Connection c;
 	private ExecutorService pool;
+	
+	private int maxCo;
+	private int port;
+	private int timeout;
+		
+	/**
+	 *Constructeur
+	 * @param maxCo détermine le nombre de connection maximum
+	 * @param port détermine le port d'écoute
+	 * @param timeout détermine le temps de connection 
+	 */
+	public Server(int maxCo, int port, int timeout) {
+		this.maxCo = maxCo;
+		this.port = port;
+		this.timeout = timeout;
+	}
+
 	public Server(){
-			//create the socket
-			try {
-					s = new ServerSocket(5555);
-					pool = Executors.newFixedThreadPool(3);	
-			}
-			catch (java.io.IOException e){
-					System.out.println(e);
-					System.exit(1);
-			}
+		try {
+			s = new ServerSocket(port);
+			pool = Executors.newFixedThreadPool(maxCo);	
+		}
+		catch (java.io.IOException e){
+			System.out.println(e);
+			System.exit(1);
+		}
+		System.out.println("Server is listening.");
 			
-			// OK, now listen for connections
-			System.out.println("Server is listening.");
-			
-			try{
-				while (true){
-					client = s.accept();
-					//create a separate thread to service the request
-					c = new Connection(client);
-					//new Thread(c).start();
-					pool.execute(c);
-				}
+		try{
+			while (true){
+				client = s.accept();
+				//Création d'un nouveau Thread
+				c = new Connection(client);
+				//début du thread
+				pool.execute(c);
 			}
-			catch (java.io.IOException e){
-				System.out.println(e);
-			}
+		}
+		catch (java.io.IOException e){
+			System.out.println(e);
+		}
 	}
 	
-	public static void main(String[] args) {
+	/**
+	 * méthode permettant l'implémentation du haut niveau
+	 */
+	public void runServer() {
 		Server timeOfDayServer= new Server();
-	
 	}
 
 }
