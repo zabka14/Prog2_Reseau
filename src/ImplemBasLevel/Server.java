@@ -70,7 +70,7 @@ public void runServer()
   {
     System.out.println("--------");
     System.out.println("Implementation Serveur Echo Bas Level");
-    System.out.println("Port utilisé : "+port);
+    System.out.println("Port utilise : "+port);
     System.out.println("--------");
   }
 
