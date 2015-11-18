@@ -2,6 +2,8 @@ package ImplemBasLevel;
 
 
 import java.net.*;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.io.*;
 
 /**
@@ -48,13 +50,35 @@ class MyThread implements Runnable
    */
   public void run()
   {
+	  
+	Timer t;
+	TimerTask tt;
+		
     try
     {
     	ps.println("Utiliser /exit pour sortir");
     	ps.println("Serveur ECHO, dites bonjour !");
     	while (true)
-    	{
+    	{    		
+    		t = new Timer();
+     	    tt = new TimerTask() {
+     			public void run() 
+     			{
+     			  ps.println("Time out : vous allez etre deconnecte");
+     			  try {
+					mySocket.close();
+     			  } 
+     			  catch (IOException e) {
+					System.out.println("Deconnection d'un client");
+     			  }
+     			}
+     		};
+     		
+     		
+     		t.schedule(tt, myServer.getTimeout());            
 			String pending = br.readLine();	
+			t.cancel();
+			
 			if (pending.equals("/exit"))
 			{
 				ps.println("Vous allez etre deconnecte");

@@ -31,7 +31,7 @@ public class Application {
  
             System.out.println("Implémentation: " + imp);
             System.out.println("Nombre co maximum : " + maxCo);
-            System.out.println("Temps maximum d'inactivité: " + maxIdle);
+            System.out.println("Temps maximum d'inactivité: " + maxIdle+" ms, "+ maxIdle/1000 +" s");
             System.out.println("Port d'écoute: " + port);
             
             
@@ -54,7 +54,7 @@ public class Application {
            
  
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Une erreur s'est produite avec le fichier de configuration.");
         }
     }
 
