@@ -26,8 +26,11 @@ public class Server{
 		this.port = port;
 		this.timeout = timeout;
 	}
-
-	public Server(){
+	
+	/**
+	 * Méthode qui permet l'implementation de haut niveau
+	 */
+	public void runServer(){
 		try {
 			s = new ServerSocket(port);
 			pool = Executors.newFixedThreadPool(maxCo);	
@@ -51,12 +54,4 @@ public class Server{
 			System.out.println(e);
 		}
 	}
-	
-	/**
-	 * méthode permettant l'implémentation du haut niveau
-	 */
-	public void runServer() {
-		Server timeOfDayServer= new Server();
-	}
-
 }
