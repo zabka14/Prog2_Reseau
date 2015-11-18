@@ -7,8 +7,8 @@ import java.util.TimerTask;
 import java.io.*;
 
 /**
- * Classe définissant les threads utilisés par le serveur (Server.java) pour chaque client
- * Ces threads implémentent une fonction echo basique (ils renvoient une copie de tout ce qui leur est envoyé) 
+ * Classe definissant les threads utilises par le serveur (Server.java) pour chaque client
+ * Ces threads implementent une fonction echo basique (ils renvoient une copie de tout ce qui leur est envoye) 
  * @author Benjamin Vianey & Cindy Bodet
  *
  */
@@ -21,10 +21,10 @@ class MyThread implements Runnable
   private BufferedReader br;  
 
   /**
-   * Constructeur du thread
-   * On récupère le socket, on bind deux buffer dessus : un reader et un writer. 
-   * @param s Le socket reliant le client au serveur.
-   * @throws SocketException 
+   * Constructeur de la l'objet MyThread
+   * @param s Le socket d'ecoute du thread sur laquelle la connexion a ete effectuee
+   * @param _myServer L'instance du serveur qui a lance le thread (afin de recuperer diverses donnees)
+   * @throws SocketException Retourne en cas d'erreur lie au socket
    */
   MyThread(Socket s, Server _myServer) throws SocketException
   {
@@ -45,8 +45,9 @@ class MyThread implements Runnable
 
   /**
    * Corps du thread
-   * Cette méthode définit le comportement du thread, en l'occurence, renvoyé tout ce qu'il ressoit
+   * Cette methode definit le comportement du thread, en l'occurence, renvoye tout ce qu'il ressoit
    * Pour pouvoir fermer le thread, une commande /exit est disponible
+   * Le timeout a ete implemente sous la forme d'un objet Timer et d'une tache TimerTask associe. 
    */
   public void run()
   {

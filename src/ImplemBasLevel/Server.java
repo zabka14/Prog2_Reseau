@@ -4,9 +4,10 @@ package ImplemBasLevel;
 import java.net.*;
 
 /**
- * Classe principale, l'objet Server créera les threads à la demande et permet de les gérer. 
- * @author Benjamin Vianey & Cindy Baudet
- *
+ * Classe principale de l'implementation de haut niveau.
+ * C'est l'objet Server qui permet d'ecouter sur un port donne, et de lancer un thread pour chaque connexion. 
+ * C'est cette classe qui gerera la limitation en nombre de thread simultanes, et le port d'ecoute. 
+ * @author Benjamin Vianey & Cindy Bodet
  */
 public class Server
 {
@@ -17,7 +18,13 @@ public class Server
 	private int timeout;
 		
 	
-
+/**
+ * Constructeur unique de la classe.
+ * Il n'y a pas de constructeur sans parametres (=valeurs par defaut), c'est le point d'entree principale qui se charge des valeurs par defauts.
+ * @param maxCo Le nombre maximum de thread (et donc de client) lance simultanement
+ * @param port Le port d'ecoute du serveur
+ * @param timeout Le temps, en milliseconde, qui sera transmis au thread pour sa valeur de timeout
+ */
   public Server(int maxCo, int port, int timeout) {
 		this.maxCo = maxCo;
 		this.nbrCo = 0;
@@ -26,16 +33,15 @@ public class Server
 	}
 
 /**
-   * Classe principale du serveur
-   * C'est cette classe qui sert de point d'entrée pour l'implémentation HL
-   * 
-   */
-  @SuppressWarnings("resource")
+ * Classe principale du serveur.
+ * C'est cette classe qui cree un thread a chaque connexion d'utilisateur, en instanciant un objet MyThread.
+ */
 public void runServer()
   {
     try
     {    
     	
+      @SuppressWarnings("resource")
       ServerSocket ss = new ServerSocket(this.port);
       messageHandler(this.port);
      
@@ -57,8 +63,8 @@ public void runServer()
   }
 
   /**
-   * Un handler pour afficher un message au lancement du serveur avec l'information du port utilisé
-   * @param port le port sur lequel le serveur écoute
+   * Un handler pour afficher un message au lancement du serveur avec l'information du port utilise
+   * @param port le port sur lequel le serveur ecoute
    */
   static private void messageHandler(Integer port)
   {
@@ -68,6 +74,7 @@ public void runServer()
     System.out.println("--------");
   }
 
+  // Pas de JavaDoc pour les getters et setters
 	public int getMaxCo() {
 		return maxCo;
 	}
