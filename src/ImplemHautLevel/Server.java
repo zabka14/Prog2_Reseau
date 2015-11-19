@@ -17,9 +17,9 @@ public class Server{
 		
 	/**
 	 *Constructeur
-	 * @param maxCo détermine le nombre de connection maximum
-	 * @param port détermine le port d'écoute
-	 * @param timeout détermine le temps de connection 
+	 * @param maxCo dï¿½termine le nombre de connection maximum
+	 * @param port dï¿½termine le port d'ï¿½coute
+	 * @param timeout dï¿½termine le temps de connection 
 	 */
 	public Server(int maxCo, int port, int timeout) {
 		this.maxCo = maxCo;
@@ -28,7 +28,7 @@ public class Server{
 	}
 	
 	/**
-	 * Méthode qui permet l'implementation de haut niveau
+	 * Mï¿½thode qui permet l'implementation de haut niveau
 	 */
 	public void runServer(){
 		try {
@@ -44,14 +44,19 @@ public class Server{
 		try{
 			while (true){
 				client = s.accept();
-				//Création d'un nouveau Thread
-				c = new Connection(client);
-				//début du thread
+				//Crï¿½ation d'un nouveau Thread
+				c = new Connection(client, this);
+				//dï¿½but du thread
 				pool.execute(c);
 			}
 		}
 		catch (java.io.IOException e){
 			System.out.println(e);
 		}
+	}
+	
+	public int getTimeout()
+	{
+		return this.timeout;
 	}
 }
