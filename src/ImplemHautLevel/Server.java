@@ -66,9 +66,9 @@ public class Server{
 
 	/**
 	 *Constructeur
-	 * @param maxCo d�termine le nombre de connection maximum
-	 * @param port d�termine le port d'�coute
-	 * @param timeout d�termine le temps de connection 
+	 * @param maxCo determine le nombre de connection maximum
+	 * @param port determine le port d'ecoute
+	 * @param timeout determine le temps de connection 
 	 */
 	public Server(int maxCo, int port, int timeout) {
 		this.maxCo = maxCo;
@@ -77,7 +77,7 @@ public class Server{
 	}
 	
 	/**
-	 * M�thode qui permet l'implementation de haut niveau
+	 * Methode qui permet l'implementation de haut niveau
 	 */
 	public void runServer(){
 		try {

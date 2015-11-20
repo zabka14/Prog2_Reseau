@@ -58,7 +58,9 @@ public class Application {
         }
     }
     
-    
+    /**
+     * Methode lançant un serveur par défaut si le fichier de configuration est absent
+     */
     public static void defautServer(){
     	System.out.println("Fichier de configuration absent ou parametre(s) incorrect(s).");
     	System.out.println("En l'absence d'un fichier de configuration valide, une configuration par défaut va se lancer");
